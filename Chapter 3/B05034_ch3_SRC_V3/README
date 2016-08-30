@@ -1,0 +1,58 @@
+This directory contains the following two top level directories: 
+
+1. wargame_distribution: 
+-- This directory holds the code for attack of the orcs in sub-directory wargame. 
+-- Code in the directory is compatible with Python 3.5.x
+-- The code is same as in version 1.1.0 developed in chapter 2
+-- Here we have split the code into individual modules and have created
+   a top level Python package called wargame. 
+-- The code is upgraded to version 2.0.0
+-- This directory also contains files setup.py , README , MANIFEST.in and LICENSE.txt
+   These files are meant for creating a source distribution (to be released to PyPI). 
+   Refer to the chapter for details. 
+
+2. src_ch3_python2
+-- Python 2.7.9 equivalent of the modularized code.
+
+All above files are compatible with Python 3.5.x
+
+
+* RUNNING THE PROGRAMS
+----------------------
+- General instruction:
+  /path/to/python  filename.py
+
+  Replace /path/to/python with the actual Python path on your system.
+  Replace filename.py with the actual file name
+
+RUNNING THE PROGRAMS (Python 3.5.x specific instructions)
+--------------------
+- Python 3.5.x must be installed on your system.
+- It is assumed that you have Python 3.5 available in your environment
+  variable PATH. It will be typically available as 'python' or 'python3'.
+- Here is the command to execute this code from command prompt
+
+                 $python filename.py     ( OR $python3 filename.py)
+
+- Alternatively specify the full path to the Python 3 executable.
+  For example on Linux, it could be:
+
+                 /usr/bin/python filename.py
+
+- On Windows OS, while installing Python 3.5, you should add Python
+ to the environment variable PATH. For example, on Window 7, it could be
+ installed here:
+    C:\Users\USER_NAME\AppData\Local\Programs\Python\Python35-32\python.exe
+
+    Where USER_NAME is your Windows user name.
+
+    Assuming it is in the PATH, it could be run from the command prompt as:
+        > python.exe filename.py
+    Or simply:
+        > python filename.py
+
+ - If the above instructions doesn't help, visit python.org for OS
+  specific instructions.
+
+
+  

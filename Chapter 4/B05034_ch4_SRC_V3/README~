@@ -1,0 +1,19 @@
+This directory contains the following two top level directories: 
+
+1. wargame: 
+-- This directory holds the code for attack of the orcs in sub-directory wargame. 
+-- Code in the directory is compatible with Python 3.5.x and beyond
+
+
+2. src_ch4_python2
+-- Python 2.7.9 equivalent of the application code
+
+How to run the game:
+$cd wargame 
+$python attackoftheorcs.py
+
+
+
+
+
+  

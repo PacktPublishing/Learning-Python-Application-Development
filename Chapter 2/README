@@ -1,0 +1,59 @@
+README Chapter 2 src
+
+This file has the supporting example code for CHAPTER 2 of the
+book : Learning Python Application Development, Packt Publishing
+
+*Directory contents:
+    attackoftheorcs_v1_1.py
+       --> Attack of the Orcs v1.1.0 (exception handling)
+    gameuniterror.py
+    heal_exception_example.py
+
+    multiple_exceptions_example.py
+      --> This last file is provided just in case you want to quickly run
+          one of the try..except examples. Not required otherwise.
+
+All above files are compatible with Python 3.5.x
+
+Equivalent Python 2.7.9 compatible files are located in the subdirectory:
+        src_ch2_python2
+
+
+* RUNNING THE PROGRAMS
+----------------------
+- General instruction: 
+  /path/to/python  filename.py
+  
+  Replace /path/to/python with the actual Python path on your system.
+  Replace filename.py with the actual file name
+
+RUNNING THE PROGRAMS (Python 3.5.x specific instructions)
+--------------------
+- Python 3.5.x must be installed on your system.
+- It is assumed that you have Python 3.5 available in your environment
+  variable PATH. It will be typically available as 'python' or 'python3'.
+- Here is the command to execute this code from command prompt
+
+                 $python filename.py     ( OR $python3 filename.py)
+
+- Alternatively specify the full path to the Python 3 executable.
+  For example on Linux, it could be:
+
+                 /usr/bin/python filename.py
+
+- On Windows OS, while installing Python 3.5, you should add Python
+ to the environment variable PATH. For example, on Window 7, it could be
+ installed here:
+    C:\Users\USER_NAME\AppData\Local\Programs\Python\Python35-32\python.exe
+
+    Where USER_NAME is your Windows user name.
+
+    Assuming it is in the PATH, it could be run from the command prompt as:
+        > python.exe filename.py
+    Or simply:
+        > python filename.py
+
+ - If the above instructions doesn't help, visit python.org for OS
+  specific instructions.
+  
+

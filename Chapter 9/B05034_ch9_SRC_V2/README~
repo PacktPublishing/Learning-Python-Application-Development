@@ -1,0 +1,23 @@
+
+This top level directory contains Python 3.4.x compatible source for:
+
+ Chapter 8 Performance Improvement-I , 
+ Book: Learning Python Application Development by Packt Publishing)
+
+See the chapter for instructions on how to run the program. 
+
+For some files it is as simple as: 
+
+$python name_of_the_file.py
+
+(replace name_of_the_file.py with the actual module name)
+
+
+Directory: src_python2_ch7
+-- Contains Python 2.7.9 compatible version of the code.  
+
+
+
+
+
+  

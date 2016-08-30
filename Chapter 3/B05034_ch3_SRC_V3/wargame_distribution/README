@@ -1,0 +1,30 @@
+Test package .
+==================
+
+Introduction
+-------------
+This is a command line test pkg. ignore.
+
+Documentation
+--------------
+Documentation can be found at...
+
+Example Usage
+--------------
+Here is an example to import the modules from this package.
+
+.. code:: python
+
+    from something import Foo
+    f = Foo()
+
+Contributing
+------------
+To contribute...
+
+LICENSE
+-------
+See LICENSE.txt file.
+
+
+

@@ -1,0 +1,16 @@
+# wargame/docs/create_apidoc
+#
+# Simple utility script to create an API level doc using Sphinx.
+# This script is tested on Linux OS. Before executing this script:
+# 1. Make sure sphinx in installed and is in your PATH
+# 2. If this is the first time you are running sphinx, create the necessary 
+#    directory structure by running sphinx-quickstart
+# 3. Then run this script.
+#
+# Copyright: 2016, Ninad Sathaye
+# License: The MIT License (MIT) . See LICENSE file for further details.
+
+
+sphinx-apidoc -f -o source ../
+sphinx-build source build
+firefox build/index.html
