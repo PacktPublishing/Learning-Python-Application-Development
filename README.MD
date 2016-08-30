@@ -1,3 +1,7 @@
+You can read more at  [Learning Python Application Development]
+(https://www.packtpub.com/application-development/learning-python-application-development?utm_source=Github&utm_medium=Repository&utm_campaign=9781785889196)
+
+
 README file for book : Learning Python Application Development, Packt Publishing
 
 *Directory contents: Code files for the following Chapters
@@ -58,3 +62,16 @@ RUNNING THE PROGRAMS (Python 3.5.x specific instructions)
   specific instructions.
   
 
+
+
+
+Related Python Books
+
+[ Expert Python Programming  [Book] ]
+(https://www.packtpub.com/application-development/expert-python-programming?utm_source=Github&utm_medium=Repository&utm_campaign=9781847194947)
+
+[ Building Machine Learning Systems with Python   [Book] ]
+(https://www.packtpub.com/big-data-and-business-intelligence/building-machine-learning-systems-python?utm_source=Github&utm_medium=Repository&utm_campaign=9781782161400)
+
+[ Deep Learning with Python   [Video] ]
+(https://www.packtpub.com/big-data-and-business-intelligence/deep-learning-python-video?utm_source=Github&utm_medium=Repository&utm_campaign=9781785883873)
