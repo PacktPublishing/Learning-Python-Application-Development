@@ -94,13 +94,13 @@ def show_theme_message(width):
     print(textwrap.fill(msg, width=width))
 
 
-def show_game_mission(dotted_line):
-    # Print the game mission
-    print("\033[1m" + "Mission:" + "\033[0m")
+def show_game_mission():
+    """Print the game mission in the terminal window"""
+    print_bold("Mission:")
     print("\tChoose a hut where Sir Foo can rest...")
-    print("\033[1m" + "TIP:" + "\033[0m")
+    print_bold("TIP:")
     print("Be careful as there are enemies lurking around!")
-    print(dotted_line)
+    print_dotted_line()
 
 
 def occupy_huts():
@@ -150,7 +150,7 @@ def run_application():
     dotted_line = '-' * width
     
     show_theme_message(width)
-    show_game_mission(dotted_line)
+    show_game_mission()
 
     # The main while loop. Keep playing depending on the user input.
     while keep_playing == 'y':
