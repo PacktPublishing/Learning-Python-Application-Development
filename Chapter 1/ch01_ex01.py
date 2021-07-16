@@ -87,9 +87,17 @@ def show_game_mission(dotted_line):
     print("Be careful as there are enemies lurking around!")
     print(dotted_line)
 
+def occupy_huts(occupants):
+    huts = []
+    occupants = ['enemy', 'friend', 'unoccupied']
+    # Randomly append 'enemy' or 'friend' or None to the huts list
+    while len(huts) < 5:
+        computer_choice = random.choice(occupants)
+        huts.append(computer_choice)
+    return huts
+
 if __name__ == '__main__':
     keep_playing = 'y'
-    occupants = ['enemy', 'friend', 'unoccupied']
     # Print the game mission
     width = 72
     dotted_line = '-' * width
@@ -98,11 +106,7 @@ if __name__ == '__main__':
 
     # The main while loop. Keep playing depending on the user input.
     while keep_playing == 'y':
-        huts = []
-        # Randomly append 'enemy' or 'friend' or None to the huts list
-        while len(huts) < 5:
-            computer_choice = random.choice(occupants)
-            huts.append(computer_choice)
+        huts = occupy_huts()
 
         # Prompt user to select a hut
         msg = "\033[1m" + "Choose a hut number to enter (1-5): " + "\033[0m"
