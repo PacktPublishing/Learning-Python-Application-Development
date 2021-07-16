@@ -59,12 +59,14 @@ import random
 import textwrap
 import sys
 
+
 if sys.version_info < (3, 0):
     print("This code requires Python 3.x and is tested with version 3.5.x ")
     print("Looks like you are trying to run this using " + 
     "Python version: {}.{} ".format(sys.version_info[0], sys.version_info[1]))
     print("Exiting...")
     sys.exit(1)
+
 
 def show_theme_message(width, dotted_line):
     print(dotted_line)
@@ -80,12 +82,15 @@ def show_theme_message(width, dotted_line):
 
     print(textwrap.fill(msg, width=width))
 
+
 def show_game_mission(dotted_line):
+    # Print the game mission
     print("\033[1m" + "Mission:" + "\033[0m")
     print("\tChoose a hut where Sir Foo can rest...")
     print("\033[1m" + "TIP:" + "\033[0m")
     print("Be careful as there are enemies lurking around!")
     print(dotted_line)
+
 
 def occupy_huts():
     huts = []
@@ -96,12 +101,14 @@ def occupy_huts():
         huts.append(computer_choice)
     return huts
 
+
 def process_user_choice():
     # Prompt user to select a hut
     msg = "\033[1m" + "Choose a hut number to enter (1-5): " + "\033[0m"
     user_choice = input("\n" + msg)
     idx = int(user_choice)
     return idx
+
 
 def reveal_occupants(dotted_line, huts, idx):
     # Print the occupant info
@@ -116,33 +123,29 @@ def reveal_occupants(dotted_line, huts, idx):
     print(dotted_line)
     print("\033[1m" + "Entering hut {}... ".format(idx) + "\033[0m", end=' ')
 
+
 def enter_hut(dotted_line, huts, idx):
     # Determine and announce the winner
     if huts[idx-1] == 'enemy':
-        print("\033[1m" + "YOU LOSE :( Better luck next time!" +
-                  "\033[0m")
+        print("\033[1m" + "YOU LOSE :( Better luck next time!" + "\033[0m")
     else:
         print("\033[1m" + "Congratulations! YOU WIN!!!" + "\033[0m")
-
     print(dotted_line)
+
 
 if __name__ == '__main__':
     keep_playing = 'y'
-    # Print the game mission
     width = 72
     dotted_line = '-' * width
+    
     show_theme_message(width, dotted_line)
     show_game_mission(dotted_line)
 
     # The main while loop. Keep playing depending on the user input.
     while keep_playing == 'y':
         huts = occupy_huts()
-
         idx = process_user_choice()
-
         reveal_occupants(dotted_line, huts, idx)
-
         enter_hut(dotted_line, huts, idx)
-        
         keep_playing = input("Play again? Yes(y)/No(n):")
 
