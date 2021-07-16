@@ -1,16 +1,18 @@
 from __future__ import print_function
-"""ch01_ex01
+"""ch01_ex02
 
-A simple text-based game (script) - select a hut where Sir Foo can rest.
+A text-based game to acquire a hut by defeating the enemy (functional)
 
 This module is compatible with Python 3.5.x. It contains
 supporting code for the book, Learning Python Application Development,
 Packt Publishing.
 
-The is a simple command line script where the player input a hut number
-to 'enter a hut'. Depending on the occupant, the player either
-wins or loses! In the aforementioned book this is also referred to as
-"Attack of the Orcs v0.0.1". More details can be found in the relevant
+This is a supporting example code for example 2 of Chapter 1. It is a
+command line program that illustrates use of Python functions.
+The player inputs a hut number. If the occupant is an enemy, the player is
+given an option to 'attack'. Player wins if he defeats the enemy.
+In the aforementioned book this is also referred to as
+"Attack of the Orcs v0.0.5". More details can be found in the relevant
 chapter of the book..
 
 RUNNING THE PROGRAM:
@@ -20,12 +22,13 @@ RUNNING THE PROGRAM:
   variable PATH. It will be typically available as 'python' or 'python3'.
 - Here is the command to execute this code from command prompt
 
-        $ python ch01_ex01.py     ( OR $ python3 ch01_ex01.py)
+        $ python ch01_ex02.py     ( OR $ python3 ch01_ex02.py)
 
 - See the README file for more information. Or visit python.org for OS
   specific instructions on executing Python from a command prompt.
 
-TODO:
+.. todo::
+
 1. The code comments and function descriptions in this file are
    intentionally kept to a minimum! See a later chapter of the book to
    learn about the code documentation and best practices!
