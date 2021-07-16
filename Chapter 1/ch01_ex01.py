@@ -96,6 +96,13 @@ def occupy_huts(occupants):
         huts.append(computer_choice)
     return huts
 
+def process_user_choice():
+    # Prompt user to select a hut
+    msg = "\033[1m" + "Choose a hut number to enter (1-5): " + "\033[0m"
+    user_choice = input("\n" + msg)
+    idx = int(user_choice)
+    return idx
+
 if __name__ == '__main__':
     keep_playing = 'y'
     # Print the game mission
@@ -108,10 +115,7 @@ if __name__ == '__main__':
     while keep_playing == 'y':
         huts = occupy_huts()
 
-        # Prompt user to select a hut
-        msg = "\033[1m" + "Choose a hut number to enter (1-5): " + "\033[0m"
-        user_choice = input("\n" + msg)
-        idx = int(user_choice)
+        idx = process_user_choice()
 
         # Print the occupant info
         print("Revealing the occupants...")
