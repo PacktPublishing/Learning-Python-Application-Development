@@ -150,6 +150,17 @@ def show_health(health_meter, bold=False):
         print(msg)
 
 
+def attack(health_meter):
+    """The main logic to determine injured unit and amount of injury"""
+    hit_list = 4 * ['player'] + 6 * ['enemy']
+    injured_unit = random.choice(hit_list)
+    hit_points = health_meter[injured_unit]
+    injury = random.randint(10, 15)
+    health_meter[injured_unit] = max(hit_points - injury, 0)
+    print("ATTACK! ", end='')
+    show_health(health_meter)
+
+
 def enter_hut(dotted_line, huts, idx):
     # Determine and announce the winner
     if huts[idx-1] == 'enemy':
