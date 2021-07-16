@@ -161,17 +161,6 @@ def attack(health_meter):
     show_health(health_meter)
 
 
-'''
-def enter_hut(dotted_line, huts, idx):
-    # Determine and announce the winner
-    if huts[idx-1] == 'enemy':
-        print("\033[1m" + "YOU LOSE :( Better luck next time!" + "\033[0m")
-    else:
-        print("\033[1m" + "Congratulations! YOU WIN!!!" + "\033[0m")
-    print(dotted_line)
-'''
-
-
 def play_game(health_meter, huts, idx):
     """The main control function for playing the game"""
     if huts[idx - 1] != 'enemy':
@@ -205,8 +194,6 @@ def play_game(health_meter, huts, idx):
 def run_application():
     keep_playing = 'y'
     health_meter = {}
-    width = 72
-    dotted_line = '-' * width
     
     show_theme_message()
     reset_health_meter(health_meter)
@@ -219,7 +206,6 @@ def run_application():
         idx = process_user_choice()
         reveal_occupants(huts, idx)
 
-        #enter_hut(dotted_line, huts, idx)
         play_game(health_meter, huts, idx)
 
         keep_playing = input("Play again? Yes(y)/No(n):")
@@ -227,4 +213,3 @@ def run_application():
 
 if __name__ == '__main__':
     run_application()
-
