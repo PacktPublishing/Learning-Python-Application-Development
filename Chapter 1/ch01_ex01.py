@@ -61,9 +61,8 @@ import sys
 
 if sys.version_info < (3, 0):
     print("This code requires Python 3.x and is tested with version 3.5.x ")
-    print("Looks like you are trying to run this using "
-          "Python version: %d.%d " % (sys.version_info[0],
-                                      sys.version_info[1]))
+    print("Looks like you are trying to run this using " + 
+    "Python version: {}.{} ".format(sys.version_info[0], sys.version_info[1]))
     print("Exiting...")
     sys.exit(1)
 
@@ -108,13 +107,13 @@ if __name__ == '__main__':
         print("Revealing the occupants...")
         msg = ""
         for i in range(len(huts)):
-            occupant_info = "<%d:%s>"%(i+1, huts[i])
+            occupant_info = "<{}:{}>".format(i+1, huts[i])
             if i + 1 == idx:
                 occupant_info = "\033[1m" + occupant_info + "\033[0m"
             msg += occupant_info + " "
         print("\t" + msg)
         print(dotted_line)
-        print("\033[1m" + "Entering hut %d... " % idx + "\033[0m", end=' ')
+        print("\033[1m" + "Entering hut {}... ".format(idx) + "\033[0m", end=' ')
 
         # Determine and announce the winner
         if huts[idx-1] == 'enemy':
