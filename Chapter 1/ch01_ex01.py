@@ -103,6 +103,19 @@ def process_user_choice():
     idx = int(user_choice)
     return idx
 
+def reveal_occupants(dotted_line, huts, idx):
+    # Print the occupant info
+    print("Revealing the occupants...")
+    msg = ""
+    for i in range(len(huts)):
+        occupant_info = "<{}:{}>".format(i+1, huts[i])
+        if i + 1 == idx:
+            occupant_info = "\033[1m" + occupant_info + "\033[0m"
+        msg += occupant_info + " "
+    print("\t" + msg)
+    print(dotted_line)
+    print("\033[1m" + "Entering hut {}... ".format(idx) + "\033[0m", end=' ')
+
 if __name__ == '__main__':
     keep_playing = 'y'
     # Print the game mission
@@ -117,17 +130,7 @@ if __name__ == '__main__':
 
         idx = process_user_choice()
 
-        # Print the occupant info
-        print("Revealing the occupants...")
-        msg = ""
-        for i in range(len(huts)):
-            occupant_info = "<{}:{}>".format(i+1, huts[i])
-            if i + 1 == idx:
-                occupant_info = "\033[1m" + occupant_info + "\033[0m"
-            msg += occupant_info + " "
-        print("\t" + msg)
-        print(dotted_line)
-        print("\033[1m" + "Entering hut {}... ".format(idx) + "\033[0m", end=' ')
+        reveal_occupants(dotted_line, huts, idx)
 
         # Determine and announce the winner
         if huts[idx-1] == 'enemy':
