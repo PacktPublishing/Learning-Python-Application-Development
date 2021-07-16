@@ -79,8 +79,9 @@ def print_dotted_line(width=72):
 
 
 def show_theme_message(width, dotted_line):
-    print(dotted_line)
-    print("\033[1m" + "Attack of The Orcs v0.0.1:" + "\033[0m")
+    """Print the game theme in the terminal window"""
+    print_dotted_line()
+    print_bold("Attack of The Orcs v0.0.5:")
     msg = (
         "The war between humans and their arch enemies, Orcs, was in the "
         "offing. Sir Foo, one of the brave knights guarding the southern "
