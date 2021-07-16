@@ -94,6 +94,12 @@ def show_theme_message(width):
     print(textwrap.fill(msg, width=width))
 
 
+def reset_health_meter(health_meter):
+    """Reset the values of health_meter dict to the original ones"""
+    health_meter['player'] = 40
+    health_meter['enemy'] = 30
+
+
 def show_game_mission():
     """Print the game mission in the terminal window"""
     print_bold("Mission:")
@@ -145,14 +151,17 @@ def enter_hut(dotted_line, huts, idx):
 
 def run_application():
     keep_playing = 'y'
+    health_meter = {}
     width = 72
     dotted_line = '-' * width
     
     show_theme_message(width)
+    reset_health_meter(health_meter)
     show_game_mission()
 
     # The main while loop. Keep playing depending on the user input.
     while keep_playing == 'y':
+        reset_health_meter(health_meter)
         huts = occupy_huts()
         idx = process_user_choice()
         reveal_occupants(huts, idx)
