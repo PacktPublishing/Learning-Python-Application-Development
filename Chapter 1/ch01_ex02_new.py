@@ -78,7 +78,7 @@ def print_dotted_line(width=72):
     print('-'*width)
 
 
-def show_theme_message(width, dotted_line):
+def show_theme_message(width):
     """Print the game theme in the terminal window"""
     print_dotted_line()
     print_bold("Attack of The Orcs v0.0.5:")
