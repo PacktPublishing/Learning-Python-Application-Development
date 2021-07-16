@@ -149,7 +149,7 @@ def run_application():
     width = 72
     dotted_line = '-' * width
     
-    show_theme_message(width, dotted_line)
+    show_theme_message(width)
     show_game_mission(dotted_line)
 
     # The main while loop. Keep playing depending on the user input.
