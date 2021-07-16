@@ -133,7 +133,7 @@ def enter_hut(dotted_line, huts, idx):
     print(dotted_line)
 
 
-if __name__ == '__main__':
+def run_application():
     keep_playing = 'y'
     width = 72
     dotted_line = '-' * width
@@ -148,4 +148,8 @@ if __name__ == '__main__':
         reveal_occupants(dotted_line, huts, idx)
         enter_hut(dotted_line, huts, idx)
         keep_playing = input("Play again? Yes(y)/No(n):")
+
+
+if __name__ == '__main__':
+    run_application()
 
