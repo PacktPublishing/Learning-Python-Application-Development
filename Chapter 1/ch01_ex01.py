@@ -80,6 +80,13 @@ def show_theme_message(width, dotted_line):
 
     print(textwrap.fill(msg, width=width))
 
+def show_game_mission(dotted_line):
+    print("\033[1m" + "Mission:" + "\033[0m")
+    print("\tChoose a hut where Sir Foo can rest...")
+    print("\033[1m" + "TIP:" + "\033[0m")
+    print("Be careful as there are enemies lurking around!")
+    print(dotted_line)
+
 if __name__ == '__main__':
     keep_playing = 'y'
     occupants = ['enemy', 'friend', 'unoccupied']
@@ -87,11 +94,7 @@ if __name__ == '__main__':
     width = 72
     dotted_line = '-' * width
     show_theme_message(width, dotted_line)
-    print("\033[1m" + "Mission:" + "\033[0m")
-    print("\tChoose a hut where Sir Foo can rest...")
-    print("\033[1m" + "TIP:" + "\033[0m")
-    print("Be careful as there are enemies lurking around!")
-    print(dotted_line)
+    show_game_mission(dotted_line)
 
     # The main while loop. Keep playing depending on the user input.
     while keep_playing == 'y':
