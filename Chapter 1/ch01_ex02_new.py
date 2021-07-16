@@ -140,6 +140,16 @@ def reveal_occupants(huts, idx):
     print_dotted_line()
 
 
+def show_health(health_meter, bold=False):
+    """Show the remaining hit points of the player and the enemy"""
+    msg = "Health: Sir Foo: {}, Enemy: {}".format(
+        health_meter['player'], health_meter['enemy'])
+    if bold:
+        print_bold(msg)
+    else:
+        print(msg)
+
+
 def enter_hut(dotted_line, huts, idx):
     # Determine and announce the winner
     if huts[idx-1] == 'enemy':
