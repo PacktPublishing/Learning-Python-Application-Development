@@ -87,7 +87,7 @@ def show_game_mission(dotted_line):
     print("Be careful as there are enemies lurking around!")
     print(dotted_line)
 
-def occupy_huts(occupants):
+def occupy_huts():
     huts = []
     occupants = ['enemy', 'friend', 'unoccupied']
     # Randomly append 'enemy' or 'friend' or None to the huts list
