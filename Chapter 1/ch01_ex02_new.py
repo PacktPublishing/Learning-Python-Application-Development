@@ -161,6 +161,7 @@ def attack(health_meter):
     show_health(health_meter)
 
 
+'''
 def enter_hut(dotted_line, huts, idx):
     # Determine and announce the winner
     if huts[idx-1] == 'enemy':
@@ -168,6 +169,37 @@ def enter_hut(dotted_line, huts, idx):
     else:
         print("\033[1m" + "Congratulations! YOU WIN!!!" + "\033[0m")
     print(dotted_line)
+'''
+
+
+def play_game(health_meter, huts, idx):
+    """The main control function for playing the game"""
+    if huts[idx - 1] != 'enemy':
+        print_bold("Congratulations! YOU WIN!!!")
+    else:
+        print_bold('ENEMY SIGHTED! ', end='')
+        show_health(health_meter, bold=True)
+        continue_attack = True
+
+        # Loop that actually runs the combat if user wants to attack
+        while continue_attack:
+            continue_attack = input(".......continue attack? (y/n): ")
+            if continue_attack == 'n':
+                print_bold("RUNNING AWAY with following health status...")
+                show_health(health_meter, bold=True)
+                print_bold("GAME OVER!")
+                break
+
+            attack(health_meter)
+
+            # Check if either one of the opponents is defeated
+            if health_meter['enemy'] <= 0:
+                print_bold("GOOD JOB! Enemy defeated! YOU WIN!!!")
+                break
+
+            if health_meter['player'] <= 0:
+                print_bold("YOU LOSE  :(  Better luck next time")
+                break
 
 
 def run_application():
@@ -186,7 +218,10 @@ def run_application():
         huts = occupy_huts()
         idx = process_user_choice()
         reveal_occupants(huts, idx)
-        enter_hut(dotted_line, huts, idx)
+
+        #enter_hut(dotted_line, huts, idx)
+        play_game(health_meter, huts, idx)
+
         keep_playing = input("Play again? Yes(y)/No(n):")
 
 
