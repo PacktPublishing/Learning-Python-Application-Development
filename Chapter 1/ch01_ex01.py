@@ -116,6 +116,16 @@ def reveal_occupants(dotted_line, huts, idx):
     print(dotted_line)
     print("\033[1m" + "Entering hut {}... ".format(idx) + "\033[0m", end=' ')
 
+def enter_hut(dotted_line, huts, idx):
+    # Determine and announce the winner
+    if huts[idx-1] == 'enemy':
+        print("\033[1m" + "YOU LOSE :( Better luck next time!" +
+                  "\033[0m")
+    else:
+        print("\033[1m" + "Congratulations! YOU WIN!!!" + "\033[0m")
+
+    print(dotted_line)
+
 if __name__ == '__main__':
     keep_playing = 'y'
     # Print the game mission
@@ -132,13 +142,7 @@ if __name__ == '__main__':
 
         reveal_occupants(dotted_line, huts, idx)
 
-        # Determine and announce the winner
-        if huts[idx-1] == 'enemy':
-            print("\033[1m" + "YOU LOSE :( Better luck next time!" +
-                  "\033[0m")
-        else:
-            print("\033[1m" + "Congratulations! YOU WIN!!!" + "\033[0m")
-
-        print(dotted_line)
+        enter_hut(dotted_line, huts, idx)
+        
         keep_playing = input("Play again? Yes(y)/No(n):")
 
