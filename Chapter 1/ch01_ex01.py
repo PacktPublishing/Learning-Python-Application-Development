@@ -66,12 +66,7 @@ if sys.version_info < (3, 0):
     print("Exiting...")
     sys.exit(1)
 
-if __name__ == '__main__':
-    keep_playing = 'y'
-    occupants = ['enemy', 'friend', 'unoccupied']
-    # Print the game mission
-    width = 72
-    dotted_line = '-' * width
+def show_theme_message(width, dotted_line):
     print(dotted_line)
     print("\033[1m" + "Attack of The Orcs v0.0.1:" + "\033[0m")
     msg = (
@@ -84,6 +79,14 @@ if __name__ == '__main__':
         "was no one to be seen around. Hesitantly, he  decided to enter..")
 
     print(textwrap.fill(msg, width=width))
+
+if __name__ == '__main__':
+    keep_playing = 'y'
+    occupants = ['enemy', 'friend', 'unoccupied']
+    # Print the game mission
+    width = 72
+    dotted_line = '-' * width
+    show_theme_message(width, dotted_line)
     print("\033[1m" + "Mission:" + "\033[0m")
     print("\tChoose a hut where Sir Foo can rest...")
     print("\033[1m" + "TIP:" + "\033[0m")
