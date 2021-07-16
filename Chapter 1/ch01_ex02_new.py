@@ -121,8 +121,8 @@ def process_user_choice():
     return idx
 
 
-def reveal_occupants(dotted_line, huts, idx):
-    # Print the occupant info
+def reveal_occupants(huts, idx):
+    """Print the occupants of the hut"""
     print("Revealing the occupants...")
     msg = ""
     for i in range(len(huts)):
@@ -131,8 +131,7 @@ def reveal_occupants(dotted_line, huts, idx):
             occupant_info = "\033[1m" + occupant_info + "\033[0m"
         msg += occupant_info + " "
     print("\t" + msg)
-    print(dotted_line)
-    print("\033[1m" + "Entering hut {}... ".format(idx) + "\033[0m", end=' ')
+    print_dotted_line()
 
 
 def enter_hut(dotted_line, huts, idx):
@@ -156,7 +155,7 @@ def run_application():
     while keep_playing == 'y':
         huts = occupy_huts()
         idx = process_user_choice()
-        reveal_occupants(dotted_line, huts, idx)
+        reveal_occupants(huts, idx)
         enter_hut(dotted_line, huts, idx)
         keep_playing = input("Play again? Yes(y)/No(n):")
 
