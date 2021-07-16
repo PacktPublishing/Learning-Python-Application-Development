@@ -104,9 +104,9 @@ def show_game_mission():
 
 
 def occupy_huts():
+    """Randomly populate the `huts` list with occupants"""
     huts = []
     occupants = ['enemy', 'friend', 'unoccupied']
-    # Randomly append 'enemy' or 'friend' or None to the huts list
     while len(huts) < 5:
         computer_choice = random.choice(occupants)
         huts.append(computer_choice)
