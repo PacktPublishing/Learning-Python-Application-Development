@@ -68,6 +68,16 @@ if sys.version_info < (3, 0):
     sys.exit(1)
 
 
+def print_bold(msg, end='\n'):
+    """Print a string in 'bold' font"""
+    print("\033[1m" + msg + "\033[0m", end=end)
+
+
+def print_dotted_line(width=72):
+    """Print a dotted (rather 'dashed') line"""
+    print('-'*width)
+
+
 def show_theme_message(width, dotted_line):
     print(dotted_line)
     print("\033[1m" + "Attack of The Orcs v0.0.1:" + "\033[0m")
