@@ -114,7 +114,7 @@ def occupy_huts():
 
 
 def process_user_choice():
-    # Prompt user to select a hut
+    """Accepts the hut number from the user"""
     msg = "\033[1m" + "Choose a hut number to enter (1-5): " + "\033[0m"
     user_choice = input("\n" + msg)
     idx = int(user_choice)
