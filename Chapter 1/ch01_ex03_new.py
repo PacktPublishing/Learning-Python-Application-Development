@@ -88,27 +88,6 @@ def print_bold(msg, end='\n'):
     print("\033[1m" + msg + "\033[0m", end=end)
 
 
-def print_dotted_line(width=72):
-    """Print a dotted (rather 'dashed') line"""
-    print('-'*width)
-
-
-def show_theme_message(width=72):
-    """Print the game theme in the terminal window"""
-    print_dotted_line()
-    print_bold("Attack of The Orcs v0.0.5:")
-    msg = (
-        "The war between humans and their arch enemies, Orcs, was in the "
-        "offing. Sir Foo, one of the brave knights guarding the southern "
-        "plains began a long journey towards the east through an unknown "
-        "dense forest. On his way, he spotted a small isolated settlement."
-        " Tired and hoping to replenish his food stock, he decided to take"
-        " a detour. As he approached the village, he saw five huts. There "
-        "was no one to be seen around. Hesitantly, he  decided to enter..")
-
-    print(textwrap.fill(msg, width=width))
-
-
 def reset_health_meter(health_meter):
     """Reset the values of health_meter dict to the original ones"""
     health_meter['player'] = 40
