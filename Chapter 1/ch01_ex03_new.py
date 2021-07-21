@@ -100,7 +100,6 @@ def show_game_mission():
     print("\tChoose a hut where Sir Foo can rest...")
     print_bold("TIP:")
     print("Be careful as there are enemies lurking around!")
-    print_dotted_line()
 
 
 def occupy_huts():
@@ -131,7 +130,6 @@ def reveal_occupants(huts, idx):
             occupant_info = "\033[1m" + occupant_info + "\033[0m"
         msg += occupant_info + " "
     print("\t" + msg)
-    print_dotted_line()
 
 
 def show_health(health_meter, bold=False):
@@ -189,7 +187,6 @@ def run_application():
     keep_playing = 'y'
     health_meter = {}
     
-    show_theme_message()
     reset_health_meter(health_meter)
     show_game_mission()
 
