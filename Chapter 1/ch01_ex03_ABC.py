@@ -162,18 +162,18 @@ class Knight(AbstractGameUnit):
         is_enemy = (isinstance(hut.occupant, AbstractGameUnit) and
                     hut.occupant.unit_type == 'enemy')
         continue_attack = 'y'
+
         if is_enemy:
             print_bold("Enemy sighted!")
             self.show_health(bold=True, end=' ')
             hut.occupant.show_health(bold=True, end=' ')
+
             while continue_attack:
                 continue_attack = input(".......continue attack? (y/n): ")
                 if continue_attack == 'n':
                     self.run_away()
                     break
-
                 self.attack(hut.occupant)
-
                 if hut.occupant.health_meter <= 0:
                     print("")
                     hut.acquire(self)
@@ -223,7 +223,7 @@ class Hut:
         """Update the occupant of this hut"""
         self.occupant = new_occupant
         self.is_acquired = True
-        print_bold("GOOD JOB! Hut %d acquired" % self.number)
+        print_bold("GOOD JOB! Hut {} acquired".format(self.number))
 
     def get_occupant_type(self):
         """Return a string giving info on the hut occupant"""
@@ -233,7 +233,6 @@ class Hut:
             occupant_type = 'unoccupied'
         else:
             occupant_type = self.occupant.unit_type
-
         return occupant_type
 
 
@@ -265,6 +264,7 @@ class AttackOfTheOrcs:
         verifying_choice = True
         idx = 0
         print("Current occupants: {}".format(self.get_occupants()))
+        
         while verifying_choice:
             user_choice = input("Choose a hut number to enter (1-5): ")
             idx = int(user_choice)
@@ -317,4 +317,3 @@ class AttackOfTheOrcs:
 if __name__ == '__main__':
     game = AttackOfTheOrcs()
     game.play()
-    
