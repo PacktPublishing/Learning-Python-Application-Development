@@ -52,6 +52,7 @@ import random
 import textwrap
 import sys
 from abc import ABCMeta, abstractmethod
+from gameuniterror import GameUnitError
 
 
 if sys.version_info < (3, 0):
@@ -115,6 +116,8 @@ class AbstractGameUnit(metaclass=ABCMeta):
         else:
             # TODO: Do you see a bug here? it can exceed max hit points!
             self.health_meter += heal_by
+        if self.health_meter > self.max_hp:
+            raise GameUnitError("health_meter > max_hp!", 101)
 
         print_bold("You are HEALED!", end=' ')
         self.show_health(bold=True)
