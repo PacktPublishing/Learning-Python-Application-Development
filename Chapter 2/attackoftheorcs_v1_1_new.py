@@ -272,11 +272,16 @@ class AttackOfTheOrcs:
             except ValueError as e:
                 print("Invalid input, args: {}\n".format(e.args))
                 continue
-            if self.huts[idx-1].is_acquired:
-                print("You have already acquired this hut. Try again."
-                      "<INFO: You can NOT get healed in already acquired hut.>")
-            else:
-                verifying_choice = False
+            try:
+                if self.huts[idx-1].is_acquired:
+                    print("You have already acquired this hut. Try again."
+                     "<INFO: You can NOT get healed in already acquired hut.>")
+                else:
+                    verifying_choice = False
+            except IndexError:
+                print("Invalid input : {}".format(idx))
+                print("Number should be in the range 1-5. Try again")
+                continue
         return idx
 
     def _occupy_huts(self):
