@@ -1,17 +1,18 @@
 from __future__ import print_function
-"""ch01_ex03
+"""ch01_ex03_AbstractBaseClass
 
-A text-based game to acquire a hut by defeating the enemy (OOP).
+A text-based game to acquire a hut by defeating the enemy (OOP- using  ABC).
 
 This module is compatible with Python 3.5.x. It contains
 supporting code for the book, Learning Python Application Development,
 Packt Publishing.
 
-This is a supporting example code for example 3 of Chapter 1. It is a
-command line program that illustrates use of OOP concepts. The player
-inputs a hut number. If the occupant is an enemy, the player is given an
-option to 'attack'. Player wins if he defeats the enemy.
- Additionally,the player can 'run away' from the combat, get healed
+Demonstrates use of Abstract Base Class (ABC) in Python. It is a hint
+to an EXERCISE of Chapter 1.
+
+The player inputs a hut number. If the occupant is an enemy, the player is
+given an option to 'attack'. Player wins if he defeats the enemy.
+Additionally,the player can 'run away' from the combat, get healed
 in friendly hut and then resume the fight.
 
 In the aforementioned book this is also referred to as
@@ -25,10 +26,13 @@ RUNNING THE PROGRAM:
   variable PATH. It will be typically available as 'python' or 'python3'.
 - Here is the command to execute this code from command prompt
 
-        $ python ch01_ex03.py     ( OR $ python3 ch01_ex03.py)
+        $ python ch01_ex03_AbstractBaseClass.py
+        ( OR $ python3 ch01_ex03_AbstractBaseClass.py)
 
 - See the README file for more information. Or visit python.org for OS
   specific instructions on executing Python from a command prompt.
+
+.. seealso:: ch01_ex03.py -- Same example without using ABC
 
 .. todo::
 
@@ -38,8 +42,7 @@ RUNNING THE PROGRAM:
    Feel free to add documentation after reading that chapter.
    Description of the code can be found in the book.
 2. Split the code into smaller modules
-3. Make GameUnit to an abstract base class
-4. See the other TODO comments..things you can try fixing as an exercise!
+3. See the other TODO comments..things you can try fixing as an exercise!
 
 :copyright: 2016, Ninad Sathaye
 
