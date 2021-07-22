@@ -1,18 +1,21 @@
 from __future__ import print_function
-"""ch01_ex02
+"""ch01_ex03
 
-A text-based game to acquire a hut by defeating the enemy (functional)
+A text-based game to acquire a hut by defeating the enemy (OOP).
 
 This module is compatible with Python 3.5.x. It contains
 supporting code for the book, Learning Python Application Development,
 Packt Publishing.
 
-This is a supporting example code for example 2 of Chapter 1. It is a
-command line program that illustrates use of Python functions.
-The player inputs a hut number. If the occupant is an enemy, the player is
-given an option to 'attack'. Player wins if he defeats the enemy.
+This is a supporting example code for example 3 of Chapter 1. It is a
+command line program that illustrates use of OOP concepts. The player
+inputs a hut number. If the occupant is an enemy, the player is given an
+option to 'attack'. Player wins if he defeats the enemy.
+ Additionally,the player can 'run away' from the combat, get healed
+in friendly hut and then resume the fight.
+
 In the aforementioned book this is also referred to as
-"Attack of the Orcs v0.0.5". More details can be found in the relevant
+"Attack of the Orcs v1.0.0". More details can be found in the relevant
 chapter of the book..
 
 RUNNING THE PROGRAM:
@@ -22,7 +25,7 @@ RUNNING THE PROGRAM:
   variable PATH. It will be typically available as 'python' or 'python3'.
 - Here is the command to execute this code from command prompt
 
-        $ python ch01_ex02.py     ( OR $ python3 ch01_ex02.py)
+        $ python ch01_ex03.py     ( OR $ python3 ch01_ex03.py)
 
 - See the README file for more information. Or visit python.org for OS
   specific instructions on executing Python from a command prompt.
@@ -34,25 +37,9 @@ RUNNING THE PROGRAM:
    learn about the code documentation and best practices!
    Feel free to add documentation after reading that chapter.
    Description of the code can be found in the book.
-
-It is quite simple to make this code compatible even with Python 2.7.9
-as follows. This is not used as this script is intended to be a very simple
-Python illustration.
-# --------------------------------------------------------------------------
-# For backward compatibility with Python 2.7.9
-# Python 2.x, the built-in function 'input' is equivalent to
-# eval(raw_input(prompt)). So we should use just raw_input instead.
-# Also note that we are importing print_function from module __future__
-# for the same reason (see the first line of this file)
-# --------------------------------------------------------------------------
-user_input_function = None
-
-if sys.version_info < (3, 0):
-    user_input_function = raw_input
-else:
-    user_input_function = input
-
-# Then call user_input_function() in places where we call input()
+2. Split the code into smaller modules
+3. Make GameUnit to an abstract base class
+4. See the other TODO comments..things you can try fixing as an exercise!
 
 :copyright: 2016, Ninad Sathaye
 
@@ -325,3 +312,4 @@ class AttackOfTheOrcs:
 if __name__ == '__main__':
     game = AttackOfTheOrcs()
     game.play()
+    
