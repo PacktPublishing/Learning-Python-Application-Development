@@ -1,46 +1,38 @@
 from __future__ import print_function
-"""attackoftheorcs_v_1_1
+"""ch01_ex03_AbstractBaseClass
 
-A text-based game to acquire a hut by defeating the enemy(handle exceptions)
+A text-based game to acquire a hut by defeating the enemy (OOP- using  ABC).
 
 This module is compatible with Python 3.5.x. It contains
 supporting code for the book, Learning Python Application Development,
 Packt Publishing.
 
-General game play:
+Demonstrates use of Abstract Base Class (ABC) in Python. It is a hint
+to an EXERCISE of Chapter 1.
+
 The player inputs a hut number. If the occupant is an enemy, the player is
 given an option to 'attack'. Player wins if he defeats the enemy.
 Additionally,the player can 'run away' from the combat, get healed
 in friendly hut and then resume the fight.
 
 In the aforementioned book this is also referred to as
-"Attack of the Orcs v1.1.0". More details can be found in the relevant
+"Attack of the Orcs v1.0.0". More details can be found in the relevant
 chapter of the book..
-
-Demonstrates use of Abstract Base Class (ABC) in Python. This module
-is based on code from file ch01_ex03_AbstractBaseClass.py of Chapter 1
-
-What's new in this module then?
-- Implements some try...except clauses to demonstrate exception handling.
-  Examples:
-  - It fixes the invalid input problem while choosing the hut number.
-  - The heal method, under certain conditions now raises a custom exception
-    called 'GameUnitError'. This is used by heal_exception_example.py
-
-Usage: It is primarily meant to be used along with heal_exception_example.py
-        But you can also run this standalone as noted below:
 
 RUNNING THE PROGRAM:
 --------------------
 - Python 3.5.x must be installed on your system.
 - It is assumed that you have Python 3.5 available in your environment
-  variable PATH. It will be typically available as 'python'
+  variable PATH. It will be typically available as 'python' or 'python3'.
 - Here is the command to execute this code from command prompt
 
-        $ python attackoftheorcs_v1_1.py
+        $ python ch01_ex03_AbstractBaseClass.py
+        ( OR $ python3 ch01_ex03_AbstractBaseClass.py)
 
 - See the README file for more information. Or visit python.org for OS
   specific instructions on executing Python from a command prompt.
+
+.. seealso:: ch01_ex03.py -- Same example without using ABC
 
 .. todo::
 
@@ -57,19 +49,18 @@ RUNNING THE PROGRAM:
 :license: The MIT License (MIT) . See LICENSE file for further details.
 """
 import random
+import textwrap
 import sys
+from abc import ABCMeta, abstractmethod
+from gameuniterror import GameUnitError
+
 
 if sys.version_info < (3, 0):
     print("This code requires Python 3.x and is tested with version 3.5.x ")
-    print("Looks like you are trying to run this using "
-          "Python version: %d.%d " % (sys.version_info[0],
-                                      sys.version_info[1]))
+    print("Looks like you are trying to run this using " + 
+    "Python version: {}.{} ".format(sys.version_info[0], sys.version_info[1]))
     print("Exiting...")
     sys.exit(1)
-
-
-from abc import ABCMeta, abstractmethod
-from gameuniterror import GameUnitError
 
 
 def weighted_random_selection(obj1, obj2):
@@ -79,19 +70,18 @@ def weighted_random_selection(obj1, obj2):
     """
     weighted_list = 3 * [id(obj1)] + 7 * [id(obj2)]
     selection = random.choice(weighted_list)
-
     if selection == id(obj1):
         return obj1
-
     return obj2
 
 
 def print_bold(msg, end='\n'):
+    """Print a string in 'bold' font"""
     print("\033[1m" + msg + "\033[0m", end=end)
 
 
 class AbstractGameUnit(metaclass=ABCMeta):
-    """An Abstract base class for creating various game characters"""
+    """A base class for creating various game characters"""
     def __init__(self, name=''):
         self.max_hp = 0
         self.health_meter = 0
@@ -120,13 +110,12 @@ class AbstractGameUnit(metaclass=ABCMeta):
         """Heal the unit replenishing all the hit points"""
         if self.health_meter == self.max_hp:
             return
+
         if full_healing:
             self.health_meter = self.max_hp
         else:
+            # TODO: Do you see a bug here? it can exceed max hit points!
             self.health_meter += heal_by
-        # ------------------------------------------------------------------
-        # raise a custom exception. Refer to chapter on exception handling
-        # ------------------------------------------------------------------
         if self.health_meter > self.max_hp:
             raise GameUnitError("health_meter > max_hp!", 101)
 
@@ -140,7 +129,7 @@ class AbstractGameUnit(metaclass=ABCMeta):
     def show_health(self, bold=False, end='\n'):
         """Show the remaining hit points of the player and the enemy"""
         # TODO: what if there is no enemy?
-        msg = "Health: %s: %d" % (self.name, self.health_meter)
+        msg = "Health: {}: {}".format(self.name, self.health_meter)
 
         if bold:
             print_bold(msg, end=end)
@@ -172,7 +161,7 @@ class Knight(AbstractGameUnit):
                    Example: Can you use self.enemy instead of calling
                    hut.occupant every time?
         """
-        print_bold("Entering hut %d..." % hut.number, end=' ')
+        print_bold("Entering hut {}...".format(hut.number), end=' ')
         is_enemy = (isinstance(hut.occupant, AbstractGameUnit) and
                     hut.occupant.unit_type == 'enemy')
         continue_attack = 'y'
@@ -181,14 +170,13 @@ class Knight(AbstractGameUnit):
             print_bold("Enemy sighted!")
             self.show_health(bold=True, end=' ')
             hut.occupant.show_health(bold=True, end=' ')
+
             while continue_attack:
                 continue_attack = input(".......continue attack? (y/n): ")
                 if continue_attack == 'n':
                     self.run_away()
                     break
-
                 self.attack(hut.occupant)
-
                 if hut.occupant.health_meter <= 0:
                     print("")
                     hut.acquire(self)
@@ -238,7 +226,7 @@ class Hut:
         """Update the occupant of this hut"""
         self.occupant = new_occupant
         self.is_acquired = True
-        print_bold("GOOD JOB! Hut %d acquired" % self.number)
+        print_bold("GOOD JOB! Hut {} acquired".format(self.number))
 
     def get_occupant_type(self):
         """Return a string giving info on the hut occupant"""
@@ -248,7 +236,6 @@ class Hut:
             occupant_type = 'unoccupied'
         else:
             occupant_type = self.occupant.unit_type
-
         return occupant_type
 
 
@@ -279,19 +266,15 @@ class AttackOfTheOrcs:
         """Process the user input for choice of hut to enter"""
         verifying_choice = True
         idx = 0
-        print("Current occupants: %s" % self.get_occupants())
+        print("Current occupants: {}".format(self.get_occupants()))
+        
         while verifying_choice:
             user_choice = input("Choose a hut number to enter (1-5): ")
-            # --------------------------------------------------------------
-            # try...except illustration for chapter on exception handling.
-            # (Attack Of The Orcs v1.1.0)
-            # --------------------------------------------------------------
             try:
                 idx = int(user_choice)
             except ValueError as e:
-                print("Invalid input, args: %s \n" % e.args)
+                print("Invalid input, args: {}\n".format(e.args))
                 continue
-
             try:
                 if self.huts[idx-1].is_acquired:
                     print("You have already acquired this hut. Try again."
@@ -299,10 +282,9 @@ class AttackOfTheOrcs:
                 else:
                     verifying_choice = False
             except IndexError:
-                print("Invalid input : ", idx)
+                print("Invalid input : {}".format(idx))
                 print("Number should be in the range 1-5. Try again")
                 continue
-
         return idx
 
     def _occupy_huts(self):
@@ -311,10 +293,10 @@ class AttackOfTheOrcs:
             choice_lst = ['enemy', 'friend', None]
             computer_choice = random.choice(choice_lst)
             if computer_choice == 'enemy':
-                name = 'enemy-' + str(i+1)
+                name = 'enemy-{}'.format(str(i+1))
                 self.huts.append(Hut(i+1, OrcRider(name)))
             elif computer_choice == 'friend':
-                name = 'knight-' + str(i+1)
+                name = 'knight-{}'.format(str(i+1))
                 self.huts.append(Hut(i+1, Knight(name)))
             else:
                 self.huts.append(Hut(i+1, computer_choice))
@@ -328,18 +310,15 @@ class AttackOfTheOrcs:
         self.player = Knight()
         self._occupy_huts()
         acquired_hut_counter = 0
-
         self.show_game_mission()
         self.player.show_health(bold=True)
 
         while acquired_hut_counter < 5:
             idx = self._process_user_choice()
             self.player.acquire_hut(self.huts[idx-1])
-
             if self.player.health_meter <= 0:
                 print_bold("YOU LOSE  :(  Better luck next time")
                 break
-
             if self.huts[idx-1].is_acquired:
                 acquired_hut_counter += 1
 
@@ -350,4 +329,3 @@ class AttackOfTheOrcs:
 if __name__ == '__main__':
     game = AttackOfTheOrcs()
     game.play()
-
