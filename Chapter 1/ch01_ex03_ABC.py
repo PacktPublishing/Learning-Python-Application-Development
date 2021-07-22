@@ -48,6 +48,7 @@ RUNNING THE PROGRAM:
 import random
 import textwrap
 import sys
+from abc import ABCMeta, abstractmethod
 
 
 if sys.version_info < (3, 0):
@@ -75,7 +76,7 @@ def print_bold(msg, end='\n'):
     print("\033[1m" + msg + "\033[0m", end=end)
 
 
-class GameUnit:
+class AbstractGameUnit(metaclass=ABCMeta):
     """A base class for creating various game characters"""
     def __init__(self, name=''):
         self.max_hp = 0
@@ -84,8 +85,9 @@ class GameUnit:
         self.enemy = None
         self.unit_type = None
 
+    @abstractmethod
     def info(self):
-        """Information on the unit (overridden in subclasses)"""
+        """Information on the unit (MUST be overridden in subclasses)"""
         pass
 
     def attack(self, enemy):
@@ -129,7 +131,7 @@ class GameUnit:
             print(msg, end=end)
 
 
-class Knight(GameUnit):
+class Knight(AbstractGameUnit):
     """ Class that represents the game character 'Knight'
 
     The player instance in the game is a Knight instance. Other Knight
@@ -154,7 +156,7 @@ class Knight(GameUnit):
                    hut.occupant every time?
         """
         print_bold("Entering hut {}...".format(hut.number), end=' ')
-        is_enemy = (isinstance(hut.occupant, GameUnit) and
+        is_enemy = (isinstance(hut.occupant, AbstractGameUnit) and
                     hut.occupant.unit_type == 'enemy')
         continue_attack = 'y'
         if is_enemy:
@@ -193,7 +195,7 @@ class Knight(GameUnit):
         self.enemy = None
 
 
-class OrcRider(GameUnit):
+class OrcRider(AbstractGameUnit):
     """Class that represents the game character Orc Rider"""
     def __init__(self, name=''):
         super().__init__(name=name)
