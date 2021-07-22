@@ -197,6 +197,14 @@ class Knight(GameUnit):
             hut.acquire(self)
             self.heal()
 
+    def run_away(self):
+        """Abandon the battle.
+
+        .. seealso:: `self.acquire_hut`
+        """
+        print_bold("RUNNING AWAY...")
+        self.enemy = None
+
 
 class OrcRider(GameUnit):
     """Class that represents the game character Orc Rider"""
