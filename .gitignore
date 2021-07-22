@@ -45,3 +45,15 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# =========================
+# Python Files
+# =========================
+
+.pyc
+
+# =========================
+# Python Folders
+# =========================
+
+__pycache__

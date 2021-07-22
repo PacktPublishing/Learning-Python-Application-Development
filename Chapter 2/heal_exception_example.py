@@ -36,10 +36,9 @@ RUNNING THE PROGRAM:
 
 :license: The MIT License (MIT) . See LICENSE file for further details.
 """
-
-
 from attackoftheorcs_v1_1 import Knight
 from gameuniterror import GameUnitError
+
 
 # See the module docstring for details.
 if __name__ == '__main__':
@@ -58,4 +57,3 @@ if __name__ == '__main__':
         print(e.error_message)
 
     knight.show_health()
-

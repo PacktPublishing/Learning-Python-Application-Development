@@ -45,15 +45,15 @@ RUNNING THE PROGRAM:
 
 :license: The MIT License (MIT) . See LICENSE file for further details.
 """
-
 import random
+import textwrap
 import sys
+
 
 if sys.version_info < (3, 0):
     print("This code requires Python 3.x and is tested with version 3.5.x ")
-    print("Looks like you are trying to run this using "
-          "Python version: %d.%d " % (sys.version_info[0],
-                                      sys.version_info[1]))
+    print("Looks like you are trying to run this using " + 
+    "Python version: {}.{} ".format(sys.version_info[0], sys.version_info[1]))
     print("Exiting...")
     sys.exit(1)
 
@@ -65,14 +65,13 @@ def weighted_random_selection(obj1, obj2):
     """
     weighted_list = 3 * [id(obj1)] + 7 * [id(obj2)]
     selection = random.choice(weighted_list)
-
     if selection == id(obj1):
         return obj1
-
     return obj2
 
 
 def print_bold(msg, end='\n'):
+    """Print a string in 'bold' font"""
     print("\033[1m" + msg + "\033[0m", end=end)
 
 
@@ -122,7 +121,7 @@ class GameUnit:
     def show_health(self, bold=False, end='\n'):
         """Show the remaining hit points of the player and the enemy"""
         # TODO: what if there is no enemy?
-        msg = "Health: %s: %d" % (self.name, self.health_meter)
+        msg = "Health: {}: {}".format(self.name, self.health_meter)
 
         if bold:
             print_bold(msg, end=end)
@@ -154,7 +153,7 @@ class Knight(GameUnit):
                    Example: Can you use self.enemy instead of calling
                    hut.occupant every time?
         """
-        print_bold("Entering hut %d..." % hut.number, end=' ')
+        print_bold("Entering hut {}...".format(hut.number), end=' ')
         is_enemy = (isinstance(hut.occupant, GameUnit) and
                     hut.occupant.unit_type == 'enemy')
         continue_attack = 'y'
@@ -260,7 +259,7 @@ class AttackOfTheOrcs:
         """Process the user input for choice of hut to enter"""
         verifying_choice = True
         idx = 0
-        print("Current occupants: %s" % self.get_occupants())
+        print("Current occupants: {}".format(self.get_occupants()))
         while verifying_choice:
             user_choice = input("Choose a hut number to enter (1-5): ")
             idx = int(user_choice)
@@ -269,7 +268,6 @@ class AttackOfTheOrcs:
                       "<INFO: You can NOT get healed in already acquired hut.>")
             else:
                 verifying_choice = False
-
         return idx
 
     def _occupy_huts(self):
@@ -278,10 +276,10 @@ class AttackOfTheOrcs:
             choice_lst = ['enemy', 'friend', None]
             computer_choice = random.choice(choice_lst)
             if computer_choice == 'enemy':
-                name = 'enemy-' + str(i+1)
+                name = 'enemy-{}'.format(str(i+1))
                 self.huts.append(Hut(i+1, OrcRider(name)))
             elif computer_choice == 'friend':
-                name = 'knight-' + str(i+1)
+                name = 'knight-{}'.format(str(i+1))
                 self.huts.append(Hut(i+1, Knight(name)))
             else:
                 self.huts.append(Hut(i+1, computer_choice))
@@ -295,18 +293,15 @@ class AttackOfTheOrcs:
         self.player = Knight()
         self._occupy_huts()
         acquired_hut_counter = 0
-
         self.show_game_mission()
         self.player.show_health(bold=True)
 
         while acquired_hut_counter < 5:
             idx = self._process_user_choice()
             self.player.acquire_hut(self.huts[idx-1])
-
             if self.player.health_meter <= 0:
                 print_bold("YOU LOSE  :(  Better luck next time")
                 break
-
             if self.huts[idx-1].is_acquired:
                 acquired_hut_counter += 1
 
@@ -317,4 +312,4 @@ class AttackOfTheOrcs:
 if __name__ == '__main__':
     game = AttackOfTheOrcs()
     game.play()
-
+    

@@ -58,21 +58,30 @@ else:
 
 :license: The MIT License (MIT) . See LICENSE file for further details.
 """
-
 import random
 import textwrap
 import sys
 
+
 if sys.version_info < (3, 0):
     print("This code requires Python 3.x and is tested with version 3.5.x ")
-    print("Looks like you are trying to run this using "
-          "Python version: %d.%d " % (sys.version_info[0],
-                                      sys.version_info[1]))
+    print("Looks like you are trying to run this using " + 
+    "Python version: {}.{} ".format(sys.version_info[0], sys.version_info[1]))
     print("Exiting...")
     sys.exit(1)
 
 
-def show_theme_message(width):
+def print_bold(msg, end='\n'):
+    """Print a string in 'bold' font"""
+    print("\033[1m" + msg + "\033[0m", end=end)
+
+
+def print_dotted_line(width=72):
+    """Print a dotted (rather 'dashed') line"""
+    print('-'*width)
+
+
+def show_theme_message(width=72):
     """Print the game theme in the terminal window"""
     print_dotted_line()
     print_bold("Attack of The Orcs v0.0.5:")
@@ -88,26 +97,18 @@ def show_theme_message(width):
     print(textwrap.fill(msg, width=width))
 
 
+def reset_health_meter(health_meter):
+    """Reset the values of health_meter dict to the original ones"""
+    health_meter['player'] = 40
+    health_meter['enemy'] = 30
+
+
 def show_game_mission():
     """Print the game mission in the terminal window"""
     print_bold("Mission:")
     print("\tChoose a hut where Sir Foo can rest...")
     print_bold("TIP:")
     print("Be careful as there are enemies lurking around!")
-    print_dotted_line()
-
-
-def reveal_occupants(idx, huts):
-    """Print the occupants of the hut"""
-    msg = ""
-    print("Revealing the occupants...")
-    for i in range(len(huts)):
-        occupant_info = "<%d:%s>" % (i+1, huts[i])
-        if i + 1 == idx:
-            occupant_info = "\033[1m" + occupant_info + "\033[0m"
-        msg += occupant_info + " "
-
-    print("\t" + msg)
     print_dotted_line()
 
 
@@ -129,31 +130,28 @@ def process_user_choice():
     return idx
 
 
+def reveal_occupants(huts, idx):
+    """Print the occupants of the hut"""
+    print("Revealing the occupants...")
+    msg = ""
+    for i in range(len(huts)):
+        occupant_info = "<{}:{}>".format(i+1, huts[i])
+        if i + 1 == idx:
+            occupant_info = "\033[1m" + occupant_info + "\033[0m"
+        msg += occupant_info + " "
+    print("\t" + msg)
+    print_dotted_line()
+
+
 def show_health(health_meter, bold=False):
     """Show the remaining hit points of the player and the enemy"""
-    msg = "Health: Sir Foo: %d, Enemy: %d" \
-          % (health_meter['player'], health_meter['enemy'])
-
+    msg = "Health: Sir Foo: {}, Enemy: {}".format(
+        health_meter['player'], health_meter['enemy'])
     if bold:
         print_bold(msg)
     else:
         print(msg)
 
-
-def reset_health_meter(health_meter):
-    """Reset the values of health_meter dict to the original ones"""
-    health_meter['player'] = 40
-    health_meter['enemy'] = 30
-
-
-def print_bold(msg, end='\n'):
-    """Print a string in 'bold' font"""
-    print("\033[1m" + msg + "\033[0m", end=end)
-
-
-def print_dotted_line(width=72):
-    """Print a dotted (rather 'dashed') line"""
-    print('-'*width)
 
 def attack(health_meter):
     """The main logic to determine injured unit and amount of injury"""
@@ -166,12 +164,8 @@ def attack(health_meter):
     show_health(health_meter)
 
 
-def play_game(health_meter):
+def play_game(health_meter, huts, idx):
     """The main control function for playing the game"""
-    huts = occupy_huts()
-    idx = process_user_choice()
-    reveal_occupants(idx, huts)
-
     if huts[idx - 1] != 'enemy':
         print_bold("Congratulations! YOU WIN!!!")
     else:
@@ -201,18 +195,24 @@ def play_game(health_meter):
 
 
 def run_application():
-    """Top level control function for running the application."""
     keep_playing = 'y'
     health_meter = {}
+    
+    show_theme_message()
     reset_health_meter(health_meter)
     show_game_mission()
 
+    # The main while loop. Keep playing depending on the user input.
     while keep_playing == 'y':
         reset_health_meter(health_meter)
-        play_game(health_meter)
-        keep_playing = input("\nPlay again? Yes(y)/No(n): ")
+        huts = occupy_huts()
+        idx = process_user_choice()
+        reveal_occupants(huts, idx)
+
+        play_game(health_meter, huts, idx)
+
+        keep_playing = input("Play again? Yes(y)/No(n):")
 
 
 if __name__ == '__main__':
     run_application()
-
