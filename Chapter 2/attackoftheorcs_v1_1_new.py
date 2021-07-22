@@ -267,7 +267,11 @@ class AttackOfTheOrcs:
         
         while verifying_choice:
             user_choice = input("Choose a hut number to enter (1-5): ")
-            idx = int(user_choice)
+            try:
+                idx = int(user_choice)
+            except ValueError as e:
+                print("Invalid input, args: {}\n".format(e.args))
+                continue
             if self.huts[idx-1].is_acquired:
                 print("You have already acquired this hut. Try again."
                       "<INFO: You can NOT get healed in already acquired hut.>")
