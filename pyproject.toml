@@ -1,0 +1,82 @@
+[tool.poetry]
+name = "learning-python-design-patterns"
+version = "2.0.0"
+description = "Learning Python Design Patterns - Second Edition book code examples"
+authors = ["Chetan Giridhar <chetan.giridhar@gmail.com>"]
+readme = "Readme.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.0"
+pytest-cov = "^4.1.0"
+pytest-mock = "^3.11.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "--strict-markers",
+    "--strict-config",
+    "--verbose",
+    "-ra",
+    "--cov=.",
+    "--cov-report=html",
+    "--cov-report=xml",
+    "--cov-report=term-missing",
+    "--cov-fail-under=80"
+]
+markers = [
+    "unit: Unit tests",
+    "integration: Integration tests", 
+    "slow: Slow running tests"
+]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::PendingDeprecationWarning"
+]
+
+[tool.coverage.run]
+source = ["tests"]
+omit = [
+    "*/__pycache__/*",
+    "*/venv/*",
+    "*/virtualenv/*",
+    "*/.venv/*",
+    "*/.pytest_cache/*",
+    "*/htmlcov/*",
+    "*/build/*",
+    "*/dist/*",
+    "*/docs/*",
+    "*/setup.py",
+    "*/.tox/*"
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:"
+]
+show_missing = true
+precision = 2
+
+[tool.coverage.html]
+directory = "htmlcov"
+
+[tool.coverage.xml]
+output = "coverage.xml"
